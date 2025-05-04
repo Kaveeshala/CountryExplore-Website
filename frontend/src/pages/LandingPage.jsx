@@ -13,7 +13,7 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
+    <div className="relative min-h-screen w-full overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
@@ -25,13 +25,13 @@ export default function LandingPage() {
 
       {/* Main content */}
       <main
-        className={`relative z-10 flex flex-col items-center md:items-start justify-center h-full px-4 md:px-16 transition-opacity duration-1000 ${
+        className={`relative z-10 flex flex-col items-center md:items-start justify-start md:justify-center h-auto min-h-screen max-h-screen overflow-y-auto px-4 sm:px-6 md:px-16 pt-34 sm:pt-28 md:pt-0 transition-opacity duration-1000 ${
           loaded ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        <div className="text-center md:text-left max-w-4xl">
+        <div className="text-center md:text-left max-w-3xl sm:max-w-4xl">
           <motion.h2
-            className="text-4xl sm:text-5xl md:text-6xl font-bold text-black leading-tight mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-tight mb-4 sm:mb-6"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
@@ -41,7 +41,7 @@ export default function LandingPage() {
           </motion.h2>
 
           <motion.p
-            className="text-lg sm:text-xl md:text-2xl text-black mb-8 max-w-2xl mx-auto md:mx-0"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-black mb-6 sm:mb-8 max-w-2xl mx-auto md:mx-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
