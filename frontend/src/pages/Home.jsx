@@ -15,13 +15,20 @@ export default function Home() {
   const [favoriteCountries, setFavoriteCountries] = useState([]);
   const [showFavorites, setShowFavorites] = useState(false);
 
+  // Load countries and restore session data on mount
   useEffect(() => {
     // Fetch all countries
     axios.get("https://restcountries.com/v3.1/all")
       .then(res => setCountries(res.data))
       .catch(err => console.error(err));
 
-    // Fetch favorite countries from the backend
+    // Restore region and search term from localStorage
+    const savedRegion = localStorage.getItem("selectedRegion");
+    const savedSearch = localStorage.getItem("searchTerm");
+    if (savedRegion) setSelectedRegion(savedRegion);
+    if (savedSearch) setSearchTerm(savedSearch);
+
+    // Fetch favorite countries from backend
     const fetchFavorites = async () => {
       try {
         const res = await axios.get("https://countryname-backend.onrender.com/api/favorites", {
@@ -35,6 +42,24 @@ export default function Home() {
 
     fetchFavorites();
   }, []);
+
+  // Persist region to localStorage
+  useEffect(() => {
+    if (selectedRegion) {
+      localStorage.setItem("selectedRegion", selectedRegion);
+    } else {
+      localStorage.removeItem("selectedRegion");
+    }
+  }, [selectedRegion]);
+
+  // Persist search term to localStorage
+  useEffect(() => {
+    if (searchTerm) {
+      localStorage.setItem("searchTerm", searchTerm);
+    } else {
+      localStorage.removeItem("searchTerm");
+    }
+  }, [searchTerm]);
 
   const filteredCountries = countries.filter((country) => {
     const matchesRegion = selectedRegion ? country.region === selectedRegion : true;
