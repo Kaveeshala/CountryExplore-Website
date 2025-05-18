@@ -97,7 +97,7 @@ describe("CountryDetails Component", () => {
 
     expect(screen.getByText(/Test Dollar/)).toBeInTheDocument();
     expect(screen.getByText(/English/)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /Back to Countries/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Go Back/i })).toBeInTheDocument();
     expect(screen.getAllByText(/Yes/)[0]).toBeInTheDocument(); // or [1], depending on context
 
 
